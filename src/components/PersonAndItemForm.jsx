@@ -10,9 +10,9 @@ export default function PersonAndItemForm({
   }
 
   // to store the item to be added to items list
-  const [item, setItem] = useState({ name: '', price: '' });
-  // to store the person's name to be added to the people dropdown list
-  const [person, setPerson] = useState('');
+  const [item, setItem] = useState({ name: '', price: '', people: [] });
+  // to store the person to be added to the people dropdown list
+  const [person, setPerson] = useState({ name: '', amount: 0 });
 
   // handle to update item name change as user types
   const handleItemNameChange = (event) => {
@@ -34,10 +34,10 @@ export default function PersonAndItemForm({
   };
 
   // handle to update name change as user types
-  const handlePersonChange = (event) => {
-    const updatedPerson = event.target.value;
+  const handlePersonNameChange = (event) => {
+    const updatedPersonName = event.target.value;
 
-    setPerson(updatedPerson);
+    setPerson({ ...person, name: updatedPersonName });
   };
 
   // handle to add the person to the people list in the parent component
@@ -59,7 +59,7 @@ export default function PersonAndItemForm({
       <br />
       <label htmlFor="person">
         {'person name to add: '}
-        <input id="person" type="text" value={person} onChange={handlePersonChange} />
+        <input id="person" type="text" value={person.name} onChange={handlePersonNameChange} />
       </label>
       <button type="button" onClick={handlePersonSubmit}> add person </button>
     </div>
