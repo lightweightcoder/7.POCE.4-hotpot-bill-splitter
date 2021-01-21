@@ -31,6 +31,8 @@ export default function ItemList({
       // add the selected person name into the corresponding
       // item in the itemslist
       itemsList[itemIndex].people.push(selectedName);
+      console.log('itemIndex', itemIndex);
+      console.log('itemsList is', itemsList);
 
       // update the itemsList in the app component
       sendItemsList([...itemsList]);

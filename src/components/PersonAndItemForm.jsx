@@ -18,14 +18,14 @@ export default function PersonAndItemForm({
   const handleItemNameChange = (event) => {
     const updatedItemName = event.target.value;
 
-    setItem({ ...item, name: updatedItemName });
+    setItem({ ...item, name: updatedItemName, people: [] });
   };
 
   // handle to update item price change as user types
   const handleItemPriceChange = (event) => {
     const updatedItemPrice = event.target.value;
 
-    setItem({ ...item, price: updatedItemPrice });
+    setItem({ ...item, price: updatedItemPrice, people: [] });
   };
 
   // handle to add the item to the items list in the parent component
