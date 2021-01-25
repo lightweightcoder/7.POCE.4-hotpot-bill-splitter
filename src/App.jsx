@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import CreateBillForm from './components/CreateBillForm.jsx';
 import PersonAndItemForm from './components/PersonAndItemForm.jsx';
 import ItemList from './components/ItemList.jsx';
+import PersonList from './components/PersonList.jsx';
+import SaveBill from './components/SaveBill.jsx';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -46,9 +48,11 @@ export default function App() {
   return (
     <div>
       <ErrorBoundary>
-        <CreateBillForm billName={billName} sendBillName={setBillName} sendBillId={setBillId} />
+        <CreateBillForm billId={billId} billName={billName} sendBillName={setBillName} sendBillId={setBillId} />
         <PersonAndItemForm billId={billId} itemsList={itemsList} sendItemsList={setItemsList} peopleList={peopleList} sendPeopleList={setPeopleList} />
         <ItemList billId={billId} itemsList={itemsList} sendItemsList={setItemsList} peopleList={peopleList} sendPeopleList={setPeopleList} />
+        <PersonList billId={billId} peopleList={peopleList} />
+        <SaveBill billId={billId} peopleList={peopleList} sendBillId={setBillId} />
       </ErrorBoundary>
     </div>
   );

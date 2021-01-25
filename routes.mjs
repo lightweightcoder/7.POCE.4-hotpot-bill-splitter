@@ -11,6 +11,9 @@ export default function routes(app) {
   // create a new bill
   app.post('/bills', BillsController.create);
 
+  // update a bill with total amount and amount each person owes
+  app.put('/bills/:id', BillsController.update);
+
   // special JS page. Include the webpack index.html file
   app.get('/home', (request, response) => {
     response.sendFile(resolve('dist', 'main.html'));

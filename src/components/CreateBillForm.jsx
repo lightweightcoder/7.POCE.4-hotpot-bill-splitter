@@ -2,10 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function CreateBillForm({ billName, sendBillName, sendBillId }) {
-  // state to check if a bill has been submitted to know if form should be displayed
-  const [isBillSubmitted, setIsBillSubmitted] = useState(false);
-
+export default function CreateBillForm({
+  billId, billName, sendBillName, sendBillId,
+}) {
   // helper function to create a new bill in DB
   const createNewBill = () => {
     const newBill = {
@@ -16,6 +15,7 @@ export default function CreateBillForm({ billName, sendBillName, sendBillId }) {
       .then((result) => {
         // set the created bill's id in the parent component
         sendBillId(result.data.bill.id);
+        console.log('result.data', result.data);
       });
   };
 
@@ -23,9 +23,6 @@ export default function CreateBillForm({ billName, sendBillName, sendBillId }) {
   const removeForm = () => {
     // set the bill name input in the form to empty
     sendBillName('');
-
-    // set this as true to remove the form
-    setIsBillSubmitted(true);
   };
 
   // handle for submitting new link
@@ -45,7 +42,7 @@ export default function CreateBillForm({ billName, sendBillName, sendBillId }) {
     sendBillName(event.target.value);
   };
 
-  if (isBillSubmitted === true) {
+  if (billId !== null) {
     return <div />;
   }
 

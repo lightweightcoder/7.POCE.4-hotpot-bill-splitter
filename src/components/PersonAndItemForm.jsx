@@ -10,26 +10,30 @@ export default function PersonAndItemForm({
   }
 
   // to store the item to be added to items list
-  const [item, setItem] = useState({ name: '', price: '', people: [] });
+  const [item, setItem] = useState({ name: '', price: '' });
   // to store the person to be added to the people dropdown list
   const [person, setPerson] = useState({ name: '', amount: 0 });
+  console.log('person', person);
 
   // handle to update item name change as user types
   const handleItemNameChange = (event) => {
     const updatedItemName = event.target.value;
 
-    setItem({ ...item, name: updatedItemName, people: [] });
+    setItem({ ...item, name: updatedItemName });
   };
 
   // handle to update item price change as user types
   const handleItemPriceChange = (event) => {
     const updatedItemPrice = event.target.value;
 
-    setItem({ ...item, price: updatedItemPrice, people: [] });
+    setItem({ ...item, price: updatedItemPrice });
   };
 
   // handle to add the item to the items list in the parent component
   const handleItemSubmit = () => {
+    // add an array to store the people who will pay for that item
+    item.people = [];
+
     sendItemsList([item, ...itemsList]);
   };
 
@@ -43,6 +47,9 @@ export default function PersonAndItemForm({
   // handle to add the person to the people list in the parent component
   const handlePersonSubmit = () => {
     sendPeopleList([person, ...peopleList]);
+
+    // reset the amount and name of the person
+    setPerson({ name: '', amount: 0 });
   };
 
   return (
